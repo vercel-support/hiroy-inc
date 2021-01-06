@@ -2,12 +2,17 @@
   "name": "blog-starter-typescript",
   "version": "1.0.0",
   "scripts": {
+    "test": "jest --watch",
     "dev": "next",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "classnames": "2.2.6",
     "date-fns": "2.10.0",
     "gray-matter": "4.0.2",
@@ -24,6 +29,8 @@
     "@types/node": "^14.0.1",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "^2.0.2"
   },
