@@ -7,7 +7,7 @@ const Footer = () => {
       <Container>
         <div className="py-28 flex flex-col lg:flex-row items-center">
           <span className="text-sm font-bold tracking-tighter leading-tight text-left">
-            &copy; 2022 Hi Roy LLC (not even joking)
+            &copy; 2021 Hi Roy LLC (not even joking)
           </span>
         </div>
       </Container>
