@@ -2,8 +2,12 @@ import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 
+// GraphQL
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+
 const postsDirectory = join(process.cwd(), '_posts')
 
+// Static (Markdown) Posts
 export function getPostSlugs() {
   return fs.readdirSync(postsDirectory)
 }
@@ -44,4 +48,30 @@ export function getAllPosts(fields: string[] = []) {
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
   return posts
+}
+
+// WP Blog (Pantheon)
+const WPBlogClient = new ApolloClient({
+  uri: process.env.WP_BLOG_GRAPH,
+  cache: new InMemoryCache(),
+});
+
+export function getBlogPosts() {
+  return WPBlogClient.query({
+    query: gql`
+      query{
+        contentNodes(
+          where: {
+            contentTypes: [POST]
+          }
+        ){
+          nodes{
+            ... on Post {
+              title
+            }
+          }
+        }
+      }
+    `,
+  })
 }

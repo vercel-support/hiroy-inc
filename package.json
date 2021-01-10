@@ -9,12 +9,14 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.6",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "classnames": "2.2.6",
     "date-fns": "2.10.0",
+    "graphql": "^15.4.0",
     "gray-matter": "4.0.2",
     "next": "latest",
     "react": "^16.13.0",
