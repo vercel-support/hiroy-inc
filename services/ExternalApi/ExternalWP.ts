@@ -6,7 +6,6 @@ import ExternalApi, { ExternalApiConfig } from '.';
 // types.
 import { ContentQuery } from '../../types/wp';
 
-
 // External WP
 export default class ExternalWP extends ExternalApi {
 
