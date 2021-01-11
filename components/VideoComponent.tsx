@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import videojs from 'video.js';
 
+// components.
+import SafeHtml from '../components/SafeHtml';
+
 
 type Link = {
   slug: string;
@@ -63,13 +66,15 @@ const VideoPlayer : React.FC<VideoProps> = ({video, thumbnail, title, descriptio
 
   return (
     <div className="flex flex-row items-stretch content-center video-wrapper mt-10 mb-10">
-      <div data-vjs-player className="w-1/4">
-        <video ref={playerRef} className="video-js vjs-16-9" playsInline />
+      <div className="w-1/4">
+        <div data-vjs-player>
+          <video ref={playerRef} className="video-js vjs-16-9" playsInline />
+        </div>
       </div>
-      <div className="w-2/3 pl-10 flex flex-col justify-center content-center">
+      <div className="w-3/4 pl-10 flex flex-col justify-center content-center">
         <div>
           <h4 className="font-bold text-xl">{title}</h4>
-          <p className="mt-2" dangerouslySetInnerHTML={{__html: description}}></p>
+          <SafeHtml html={description} />
         </div>
       </div>
     </div>

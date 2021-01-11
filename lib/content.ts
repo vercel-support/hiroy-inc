@@ -12,11 +12,11 @@ async function getWPTV() {
 
 const content = {
   wpBlog : {
-    latest: wpBlog.getLatestPosts(),
-    lastest100: wpBlog.getFirstPosts( 100 ),
+    latest: wpBlog.getLatestPosts,
+    getFirst: wpBlog.getFirstPosts,
   },
   speaking: {
-    wptv : getWPTV()
+    wptv : getWPTV
   }
 };
 

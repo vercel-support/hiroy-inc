@@ -8,6 +8,35 @@ export type Node = {
 	__typename: string;
 	node: any;
 };
+interface Image {
+  __typename: string;
+	databaseId: number;
+	altText: string;
+  caption?: null;
+  mediaItemUrl: string;
+	sizes: string;
+	fileSize: string;
+	mediaDetails: {
+		file: string;
+		height: string;
+		width: string;
+		sizes: {
+			file: string;
+			fileSize: string;
+			height: string;
+			mimeType: string;
+			name: string;
+			sourceUrl: string;
+			width: string;
+		}
+	}
+}
+
+export interface FeaturedImage {
+  __typename: string;
+  node: Image;
+}
+
 
 type Template = {
 	template: string;
@@ -15,19 +44,17 @@ type Template = {
 }
 
 export interface Post {
-	author: Node;
 	categories: Nodes;
 	content: string;
 	databaseId: number;
 	date: string;
 	excerpt: string;
-	featuredImage: any;
+	featuredImage: FeaturedImage;
 	link: string;
 	slug: string;
 	tags: Nodes;
 	title: string;
 	type: string;
-	template: Template;
 }
 
 export interface ContentQuery {

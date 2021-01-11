@@ -14,7 +14,8 @@ import content from '../lib/content'
 import Container from '../components/container'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
-import VideoPlayer from '../components/VideoComponent';
+import VideoPlayer from '../components/VideoComponent'
+import PostComponent from '../components/PostComponent';
 
 type Speaking = {
   wptv: WPTVResponse;
@@ -29,9 +30,7 @@ const Index = ({ blog, speaking }: HomeProps) => {
 
   const Posts = () => {
     return blog.map((post) => (
-      <div key={`post-${Math.random()}`}>
-        {post.title}
-      </div>
+      <PostComponent {... post} key={`post-${post.databaseId}`} />
     ))
   }
 
@@ -65,10 +64,10 @@ export default Index
 export const getStaticProps = async () => {
 
   // WordPress Blog (Arc Ctrl)
-  const allPosts = await content.wpBlog.lastest100 as ApolloQueryResult<ContentQuery>
+  const allPosts = await content.wpBlog.getFirst(100) as ApolloQueryResult<ContentQuery>
   
   // WordPress TV
-  const wpTV = await content.speaking.wptv
+  const wpTV = await content.speaking.wptv()
 
   return {
     props: {

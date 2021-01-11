@@ -15,7 +15,7 @@ export default class ExternalApi {
 
   constructor( config: ExternalApiConfig ) {
     if ( ! config.isGraph && config.isRest || '' === config.url ) {
-      throw new Error('Must be GraphQL or Rest');
+      throw new Error('External API Error: Must be GraphQL or Rest');
     }
     this.config = config;
     this.graphClient = this.config.isGraph ? this.setGraphClient() : false;
