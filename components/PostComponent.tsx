@@ -12,7 +12,6 @@ export interface PostComponentProps {
 }
 
 const PostComponent: React.FC<Post> = ({title, featuredImage, excerpt}) => {
-  console.log( { featuredImage } );
   return(
     <article className="flex flex-row items-stretch content-center video-wrapper mt-10 mb-10">
       <div className="w-1/4">

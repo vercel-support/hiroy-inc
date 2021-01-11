@@ -14,8 +14,8 @@ export type allowedAttributesType = {
  */
 const wp_kses_post = (
 	content: string,
-	allowedTags: allowedTagsType | false,
-	allowedAtts: allowedAttributesType | false,
+	allowedTags?: allowedTagsType | false,
+	allowedAtts?: allowedAttributesType | false,
 ): string | null => {
 	if (!content) {
 		return null;
