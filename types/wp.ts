@@ -35,3 +35,12 @@ export interface ContentQuery {
 		nodes: Post[];
 	};
 }
+
+type WPTVResponseQuery = {
+  results: number;
+  pages: number;
+}
+export interface WPTVResponse {
+  query: WPTVResponseQuery,
+  videos: Array<any>;
+}

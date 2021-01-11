@@ -1,5 +1,8 @@
 @tailwind base;
 
+
+@import '../node_modules/video.js/dist/video-js.min.css';
+
 /* Write your own custom base styles here */
 
 /* Start purging... */

@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
 
 // types.
-import { ContentQuery, Post } from '../types/wp'
+import { ContentQuery, Post, WPTVResponse } from '../types/wp'
 
 // content.
 import content from '../lib/content'
@@ -14,21 +14,33 @@ import content from '../lib/content'
 import Container from '../components/container'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
+import VideoPlayer from '../components/VideoComponent';
 
-type Props = {
-  nodes: Post[]
+type Speaking = {
+  wptv: WPTVResponse;
 }
 
-const Index = ({ nodes }: Props) => {
-  const heroPost = nodes[0]
-  const morePosts = nodes.slice(1)
+interface HomeProps {
+  blog: Post[];
+  speaking: Speaking;
+}
+
+const Index = ({ blog, speaking }: HomeProps) => {
 
   const Posts = () => {
-    return nodes.map((post) => (
+    return blog.map((post) => (
       <div key={`post-${Math.random()}`}>
         {post.title}
       </div>
     ))
+  }
+
+  const Videos = () => {
+    return speaking.wptv.videos.map((video:any) => {
+      return(
+        <VideoPlayer {... video} key={`video-${Math.random()}`} />
+      )
+    })
   }
   return (
     <>
@@ -37,8 +49,11 @@ const Index = ({ nodes }: Props) => {
           <title>{CMS_NAME}</title>
         </Head>
         <Container>
-          <Intro />
-          {Posts()}
+          <div className="pr-20 pl-20">
+            <Intro />
+            {Posts()}
+            {Videos()}
+          </div>
         </Container>
       </Layout>
     </>
@@ -50,9 +65,17 @@ export default Index
 export const getStaticProps = async () => {
 
   // WordPress Blog (Arc Ctrl)
-  const allPosts = await content.wpBlog.lastest100 as ApolloQueryResult<ContentQuery>;
+  const allPosts = await content.wpBlog.lastest100 as ApolloQueryResult<ContentQuery>
+  
+  // WordPress TV
+  const wpTV = await content.speaking.wptv
 
   return {
-    props: allPosts.data.contentNodes,
+    props: {
+      blog: allPosts.data.contentNodes.nodes,
+      speaking: {
+        wptv: wpTV
+      }
+    }
   }
 }
