@@ -1,12 +1,19 @@
+import { ApolloQueryResult } from '@apollo/client'
+import Head from 'next/head'
+
+// constants.
+import { CMS_NAME } from '../lib/constants'
+
+// types.
+import { ContentQuery, Post } from '../types/wp'
+
+// content.
+import content from '../lib/content'
+
+// components.
 import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
-import { getAllPosts, getBlogPosts } from '../lib/api'
-import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
-import Post from '../types/post'
 
 type Props = {
   nodes: Post[]
@@ -42,9 +49,8 @@ export default Index
 
 export const getStaticProps = async () => {
 
-  const allPosts = await getBlogPosts()
-
-  console.log(allPosts.data.contentNodes.nodes);
+  // WordPress Blog (Arc Ctrl)
+  const allPosts = await content.wpBlog.lastest100 as ApolloQueryResult<ContentQuery>;
 
   return {
     props: allPosts.data.contentNodes,
