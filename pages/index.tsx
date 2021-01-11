@@ -1,20 +1,47 @@
+import { ApolloQueryResult } from '@apollo/client'
+import Head from 'next/head'
+
+// constants.
+import { CMS_NAME } from '../lib/constants'
+
+// types.
+import { ContentQuery, Post, WPTVResponse } from '../types/wp'
+
+// content.
+import content from '../lib/content'
+
+// components.
 import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
-import { getAllPosts } from '../lib/api'
-import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
-import Post from '../types/post'
+import VideoPlayer from '../components/VideoComponent';
 
-type Props = {
-  allPosts: Post[]
+type Speaking = {
+  wptv: WPTVResponse;
 }
 
-const Index = ({ allPosts }: Props) => {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+interface HomeProps {
+  blog: Post[];
+  speaking: Speaking;
+}
+
+const Index = ({ blog, speaking }: HomeProps) => {
+
+  const Posts = () => {
+    return blog.map((post) => (
+      <div key={`post-${Math.random()}`}>
+        {post.title}
+      </div>
+    ))
+  }
+
+  const Videos = () => {
+    return speaking.wptv.videos.map((video:any) => {
+      return(
+        <VideoPlayer {... video} key={`video-${Math.random()}`} />
+      )
+    })
+  }
   return (
     <>
       <Layout>
@@ -22,7 +49,11 @@ const Index = ({ allPosts }: Props) => {
           <title>{CMS_NAME}</title>
         </Head>
         <Container>
-          <Intro />
+          <div className="pr-20 pl-20">
+            <Intro />
+            {Posts()}
+            {Videos()}
+          </div>
         </Container>
       </Layout>
     </>
@@ -32,16 +63,19 @@ const Index = ({ allPosts }: Props) => {
 export default Index
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
-  ])
+
+  // WordPress Blog (Arc Ctrl)
+  const allPosts = await content.wpBlog.lastest100 as ApolloQueryResult<ContentQuery>
+  
+  // WordPress TV
+  const wpTV = await content.speaking.wptv
 
   return {
-    props: { allPosts },
+    props: {
+      blog: allPosts.data.contentNodes.nodes,
+      speaking: {
+        wptv: wpTV
+      }
+    }
   }
 }
