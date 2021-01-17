@@ -1,21 +1,15 @@
-import Footer from './footer'
-import Meta from './meta'
+import React from "react";
+import BackgroundLines from "../components/BackgroundLines";
+import Header from "../components/Header";
 
-type Props = {
-  preview?: boolean
-  children: React.ReactNode
-}
-
-const Layout = ({ preview, children }: Props) => {
+function Layout(props) {
   return (
-    <>
-      <Meta />
-      <div className="min-h-screen">
-        <main>{children}</main>
-      </div>
-      <Footer />
-    </>
-  )
+    <div className="mi-wrapper">
+      <BackgroundLines />
+      <Header />
+      {props.children}
+    </div>
+  );
 }
 
-export default Layout
+export default Layout;
