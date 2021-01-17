@@ -1,23 +1,19 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+
+import { InformationData } from '../interfaces/data';
+
 import { faHamburger, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
 
-function Header() {
-    const [information, setInformation] = useState("");
+function Header(props: InformationData) {
+    const [information, setInformation] = useState(props.information);
     const [navigationToggler, setNavigationToggler] = useState(false);
 
     const handleNavigationToggler = () => {
         setNavigationToggler(!navigationToggler);
     }
-
-    useEffect(() => {
-        axios.get('/api/information')
-            .then(response => {
-                setInformation(response.data);
-            })
-    }, [])
 
     return (
         <nav className={navigationToggler ? "mi-header is-visible" : "mi-header"}>
@@ -27,19 +23,17 @@ function Header() {
             <div className="mi-header-inner">
                 <div className="mi-header-image">
                     <Link href="/">
-                        <img src={information.brandImage} alt="brandimage" />
+                        <a>
+                            <Image src={information.brandImage} alt="brandimage" width={300} height={300} />
+                        </a>
                     </Link>
                 </div>
 
                 <ul className="mi-header-menu">
-                    <li><Link href="/"><span>Home</span></Link></li>
-                    <li><Link href="/about"><span>About</span></Link></li>
-                    <li><Link href="/resume"><span>Resume</span></Link></li>
-                    <li><Link href="/portfolios"><span>Portfolios</span></Link></li>
-                    <li><Link href="/blogs"><span>Blogs</span></Link></li>
-                    <li><Link href="/contact"><span>Contact</span></Link></li>
+                    <li><Link href="/"><a>Home</a></Link></li>
+
                 </ul>
-                <p className="mi-header-copyright">&copy; {new Date().getFullYear()} <b><a rel="noopener noreferrer" target="_blank" href="https://nuclearthemes.com">NuclearThemes</a></b></p>
+                <p className="mi-header-copyright">&copy; {new Date().getFullYear()} <b>Hi Roy Inc (Not Joking)</b></p>
             </div>
         </nav>
     )

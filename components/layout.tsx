@@ -6,7 +6,7 @@ function Layout(props) {
   return (
     <div className="mi-wrapper">
       <BackgroundLines />
-      <Header />
+      <Header {... props} />
       {props.children}
     </div>
   );

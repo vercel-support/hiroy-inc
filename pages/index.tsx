@@ -80,7 +80,7 @@ const Home : React.FC<InformationData> = ({lightMode, information}) => {
   };
   
   return (
-    <Layout>
+    <Layout information={information}>
       <div className="mi-home-area mi-padding-section">
         <Particles className="mi-home-particle" params={lightMode? paramConfigLight : paramConfig} />
         <div className="container">
