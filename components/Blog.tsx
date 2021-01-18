@@ -2,7 +2,15 @@ import React from "react";
 import ProgressiveImage from 'react-progressive-image';
 import { Link } from "react-router-dom";
 
-function Blog(props) {
+import { Content } from '../interfaces/content';
+
+const Blog : React.FC<Content> = (props) => {
+
+  return (
+    <div>
+      TEST
+    </div>
+  )
   const { id, featuredImage, title, createDay, createMonth, filesource } = props.data;
   const getShortMonth = month => {
     return month.slice(0, 3);

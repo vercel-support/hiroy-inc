@@ -9,6 +9,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.7",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
@@ -20,6 +21,7 @@
     "date-fns": "2.10.0",
     "disqus-react": "^1.0.7",
     "fslightbox-react": "^1.4.0",
+    "graphql": "^15.4.0",
     "gray-matter": "4.0.2",
     "next": "latest",
     "node-sass": "^4.12.0",

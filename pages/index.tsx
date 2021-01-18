@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Particles from "react-particles-js";
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
-import { InformationData } from '../interfaces/data';
+import { InformationData } from '../interfaces/apiInformation';
 
 // components
 import Layout from "../components/Layout";

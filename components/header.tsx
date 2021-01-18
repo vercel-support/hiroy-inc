@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { InformationData } from '../interfaces/data';
+import { InformationData } from '../interfaces/apiInformation';
 
 import { faHamburger, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,14 +24,14 @@ function Header(props: InformationData) {
                 <div className="mi-header-image">
                     <Link href="/">
                         <a>
-                            <Image src={information.brandImage} alt="brandimage" width={300} height={300} />
+                            <Image src={information.brandImage || ''} alt="brandimage" width={300} height={300} />
                         </a>
                     </Link>
                 </div>
 
                 <ul className="mi-header-menu">
                     <li><Link href="/"><a>Home</a></Link></li>
-
+                    <li><Link href="/blog"><a>Blog</a></Link></li>
                 </ul>
                 <p className="mi-header-copyright">&copy; {new Date().getFullYear()} <b>Hi Roy Inc (Not Joking)</b></p>
             </div>
