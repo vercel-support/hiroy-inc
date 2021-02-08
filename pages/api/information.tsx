@@ -16,9 +16,9 @@ const database = {
       linkedin: 'https://linkedin.com/in/royboy789',
       github: 'https://github.com/royboy789'
     },
-    brandImage: '/images/brand-image.jpg',
-    aboutImage: '/images/about-image.jpg',
-    aboutImageLg: '/images/about-image-lg.jpg',
+    brandImage: '/images/me_tv.jpg',
+    aboutImage: '/images/me_tv.jpg',
+    aboutImageLg: '/images/me_tv.jpg',
     cvfile: '/files/roy-resume.pdf'
   },
   services: [

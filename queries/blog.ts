@@ -10,6 +10,9 @@ export const GET_BLOG_POSTS = gql`
       content
       date
       excerpt
+      featuredImage {
+        url
+      }
     }
   }
 `;

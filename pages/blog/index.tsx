@@ -31,7 +31,7 @@ export const Blogs: React.FC<BlogProps> = ({information, blog}) => {
     <Layout information={information}>
       <div className="mi-about mi-section mi-padding-top mi-padding-bottom">
         <div className="container">
-          <Sectiontitle title="Recent Blogs" />
+          <Sectiontitle title="Blog Posts" />
           <BlogsView blogs={posts} />
         </div>
       </div>

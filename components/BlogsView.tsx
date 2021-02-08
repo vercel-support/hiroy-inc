@@ -10,13 +10,16 @@ interface BlogsViewProps {
 }
 
 const BlogsView: React.FC<BlogsViewProps> = ({blogs}) => {
+  const posts = blogs.map((post) => {
+    return(
+      <div className="col-lg-6 col-md-6 col-12 mt-30" key={post.databaseId}>
+        <Blog post={post} />
+      </div>
+    )
+  });
   return (
     <div className="row mt-30-reverse">
-      {blogs.map(blog => (
-        <div className="col-lg-6 col-md-6 col-12 mt-30" key={blog.databaseId}>
-          <Blog data={blog} />
-        </div>
-      ))}
+      {posts}
     </div>
   );
 }

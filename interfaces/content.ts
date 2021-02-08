@@ -1,11 +1,15 @@
+export interface FeaturedImage {
+  url: string;
+}
 export interface Content {
   databaseId: number;
   title: string;
   slug: string;
   link: string;
   content: string;
-  data: string;
+  date: string;
   excerpt: string;
+  featuredImage: FeaturedImage;
 }
 
 export interface VideoContent extends Content {

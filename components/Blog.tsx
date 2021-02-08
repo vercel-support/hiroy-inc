@@ -1,48 +1,26 @@
 import React from "react";
 import ProgressiveImage from 'react-progressive-image';
-import { Link } from "react-router-dom";
+import Link from 'next/link';
+import Image from 'next/image';
 
 import { Content } from '../interfaces/content';
 
-const Blog : React.FC<Content> = (props) => {
-
-  return (
-    <div>
-      TEST
-    </div>
-  )
-  const { id, featuredImage, title, createDay, createMonth, filesource } = props.data;
-  const getShortMonth = month => {
-    return month.slice(0, 3);
-  };
-  const getNospaceTitle = filesource => {
-    let tempArr = filesource.split('/');
-    let fileName = tempArr[tempArr.length - 1];
-    let getName = fileName.slice(0, -3);
-    return getName;
-  };
+interface BlogProps {
+  post: Content;
+}
+const Blog : React.FC<BlogProps> = ({post}) => {
+  const { title, featuredImage, date } = post;
   return (
     <div className="mi-blog">
       <div className="mi-blog-image">
-        <Link to={`blogs/blog-details/${id}/${getNospaceTitle(filesource)}`}>
-        <ProgressiveImage
-          src={featuredImage}
-          placeholder="/images/blog-image-placeholder.png"
-        >
-          {src => <img src={src} alt={title} />}
-        </ProgressiveImage>
+        <Link href={post.link}>
+          <div>
+            <Image src={featuredImage.url || '/images/me_tv.jpg'} width={300} height={300}/>
+            <div className="mi-blog-date">
+              <span className="date">{title}</span>
+            </div>
+          </div>
         </Link>
-        <div className="mi-blog-date">
-          <span className="date">{createDay}</span>
-          <span className="month">{getShortMonth(createMonth)}</span>
-        </div>
-      </div>
-      <div className="mi-blog-content">
-        <h5>
-          <Link to={`blogs/blog-details/${id}/${getNospaceTitle(filesource)}`}>
-            {title}
-          </Link>
-        </h5>
       </div>
     </div>
   );
