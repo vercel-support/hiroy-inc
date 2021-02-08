@@ -1,47 +1,115 @@
-import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
-import Intro from '../components/intro'
-import Layout from '../components/layout'
-import { getAllPosts } from '../lib/api'
-import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
-import Post from '../types/post'
+import React, { useEffect, useState } from "react";
+import Particles from "react-particles-js";
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
-type Props = {
-  allPosts: Post[]
-}
+import { InformationData } from '../interfaces/apiInformation';
 
-const Index = ({ allPosts }: Props) => {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+// components
+import Layout from "../components/Layout";
+import Socialicons from "../components/Socialicons";
+
+
+const Home : React.FC<InformationData> = ({lightMode, information}) => {
+  const [data, setInformation] = useState(information);
+  const paramConfig = {
+    particles: {
+      number: {
+        value: 320,
+        density: {
+          enable: false
+        }
+      },
+      color: {
+        value: "#ffffff"
+      },
+      opacity: {
+        value: 0.1
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: {
+          speed: 4,
+          size_min: 0.3
+        }
+      },
+      line_linked: {
+        enable: false
+      },
+      move: {
+        random: true,
+        speed: 0.5,
+        direction: "top",
+        out_mode: "out"
+      }
+    }
+  };
+
+  const paramConfigLight = {
+    particles: {
+      number: {
+        value: 0,
+        density: {
+          enable: false
+        }
+      },
+      color: {
+        value: "#000000"
+      },
+      opacity: {
+        value: 0.1
+      },
+      size: {
+        value: 5,
+        random: true,
+        anim: {
+          speed: 4,
+          size_min: 0.3
+        }
+      },
+      line_linked: {
+        enable: false
+      },
+      move: {
+        random: true,
+        speed: 1,
+        direction: "top",
+        out_mode: "out",
+      }
+    }
+  };
+  
+  // @ts-ignore
+  const ParticleOutput = (<Particles className="mi-home-particle" params={lightMode? paramConfigLight : paramConfig} />);
   return (
-    <>
-      <Layout>
-        <Head>
-          <title>{CMS_NAME}</title>
-        </Head>
-        <Container>
-          <Intro />
-        </Container>
-      </Layout>
-    </>
-  )
+    <Layout {... information}>
+      <div className="mi-home-area mi-padding-section">
+        {ParticleOutput}
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-10 col-12">
+              <div className="mi-home-content">
+                <h1>
+                  Hi {data.name}
+                </h1>
+                <p>{data.aboutContent}</p>
+                <Socialicons bordered socialLinks={information.socialLinks} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
 }
 
-export default Index
+export default Home;
 
-export const getStaticProps = async () => {
-  const allPosts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
-  ])
-
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const url = 'development' === process.env.NODE_ENV ? 'http://localhost:3000' : process.env.HIROY_URL;
+  const res = await fetch(url + '/api/information');
+  const data = await res.json();
   return {
-    props: { allPosts },
+    props: {...data},
   }
 }
