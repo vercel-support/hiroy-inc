@@ -105,7 +105,7 @@ const Home : React.FC<InformationData> = ({lightMode, information}) => {
 
 export default Home;
 
-export async function getStaticProps(context: GetServerSidePropsContext) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const url = 'development' === process.env.NODE_ENV ? 'http://localhost:3000' : process.env.HIROY_URL;
   const res = await fetch(url + '/api/information');
   const data = await res.json();
