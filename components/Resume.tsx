@@ -1,6 +1,6 @@
 import React from "react";
 
-function Resume(props) {
+function Resume(props: any) {
   const {year, position, graduation, university, company, details} = props.resumeData;
   return (
     <div className="mi-resume mt-30">

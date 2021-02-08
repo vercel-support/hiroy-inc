@@ -1,14 +1,10 @@
 import React from 'react';
-import LineIcon from 'react-lineicons';
 
 
-function Smalltitle(props){
+const Smalltitle: React.FC<{title:string;}> = ({title}) => {
   return (
     <div className="mi-smalltitle">
-      <span className="mi-smalltitle-icon">
-        <LineIcon name={props.icon}/>
-      </span>
-      <h4>{props.title}</h4>
+      <h4>{title}</h4>
     </div>
   )
 }

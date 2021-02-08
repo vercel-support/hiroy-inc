@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Testimonial(props){
+function Testimonial(props: any){
   return (
     <div className="mi-testimonial-slideritem">
       <div className="mi-testimonial">

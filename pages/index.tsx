@@ -74,15 +74,17 @@ const Home : React.FC<InformationData> = ({lightMode, information}) => {
         random: true,
         speed: 1,
         direction: "top",
-        out_mode: "out"
+        out_mode: "out",
       }
     }
   };
   
+  // @ts-ignore
+  const ParticleOutput = (<Particles className="mi-home-particle" params={lightMode? paramConfigLight : paramConfig} />);
   return (
-    <Layout information={information}>
+    <Layout {... information}>
       <div className="mi-home-area mi-padding-section">
-        <Particles className="mi-home-particle" params={lightMode? paramConfigLight : paramConfig} />
+        {ParticleOutput}
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-10 col-12">

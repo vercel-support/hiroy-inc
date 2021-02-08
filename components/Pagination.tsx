@@ -1,13 +1,22 @@
 import React from "react";
-import LineIcon from "react-lineicons";
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Pagination({
+interface PaginationProps {
+  itemsPerPage: number;
+  totalItems: number;
+  paginate: any;
+  currentPage: number;
+  className: string;
+}
+
+const Pagination: React.FC<PaginationProps> = ({
   itemsPerPage,
   totalItems,
   paginate,
   currentPage,
   className
-}) {
+}) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
@@ -20,14 +29,14 @@ function Pagination({
         {currentPage === 1 ? null : (
           <li>
             <a onClick={e => paginate(e, currentPage - 1)} href="!#">
-              <LineIcon name="chevron-left" />
+              <FontAwesomeIcon icon={faChevronLeft} />
             </a>
           </li>
         )}
         {pageNumbers.map(number => (
           <li
             key={number}
-            className={currentPage === number ? "is-active" : null}
+            className={currentPage === number ? "is-active" : ''}
           >
             <a onClick={e => paginate(e, number)} href="!#">
               {number}
@@ -37,7 +46,7 @@ function Pagination({
         {currentPage === pageNumbers[pageNumbers.length - 1] ? null : (
           <li>
             <a onClick={e => paginate(e, currentPage + 1)} href="!#">
-              <LineIcon name="chevron-right" />
+              <FontAwesomeIcon icon={faChevronRight} />
             </a>
           </li>
         )}

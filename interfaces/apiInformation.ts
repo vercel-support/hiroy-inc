@@ -23,6 +23,7 @@ export interface Information {
   aboutImage: string;
   aboutImageLg: string;
   cvfile: string;
+  children?: any;
 }
 
 export interface Service {
@@ -95,12 +96,12 @@ export interface ContactInfo {
 
 export interface InformationData {
   information: Information;
-  services: Service[];
-  reviews: Review[];
-  skills: Skill[];
-  portfolios: Portfolio[];
-  experience: Experience;
-  blogs: Blog[];
-  contactInfo: ContactInfo;
-  lightMode: boolean;
+  services?: Service[];
+  reviews?: Review[];
+  skills?: Skill[];
+  portfolios?: Portfolio[];
+  experience?: Experience;
+  blogs?: Blog[];
+  contactInfo?: ContactInfo;
+  lightMode?: boolean;
 }

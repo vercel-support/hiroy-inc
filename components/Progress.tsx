@@ -1,6 +1,6 @@
 import React from "react";
 
-function Progress(props){
+function Progress(props: any){
   const winWidth = window.innerWidth;
   const progressQuery = () =>{
     if(winWidth && winWidth > 767){

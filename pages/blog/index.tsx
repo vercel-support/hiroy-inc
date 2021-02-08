@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 import { InformationData } from '../../interfaces/apiInformation';
 import { Content } from '../../interfaces/content';
+import { BlogResponse } from '../../interfaces/graphResponses';
 
 // components
 import Sectiontitle from "../../components/Sectiontitle";
@@ -28,7 +29,7 @@ export const Blogs: React.FC<BlogProps> = ({information, blog}) => {
   }
 
   return (
-    <Layout information={information}>
+    <Layout {...information}>
       <div className="mi-about mi-section mi-padding-top mi-padding-bottom">
         <div className="container">
           <Sectiontitle title="Blog Posts" />

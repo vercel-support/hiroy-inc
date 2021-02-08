@@ -1,13 +1,18 @@
-import FsLightbox from "fslightbox-react";
 import React, { useState } from "react";
 import * as Icon from "react-feather";
 import ProgressiveImage from 'react-progressive-image';
 
-function Portfolio(props) {
+function FsLightbox(toggler: any, sources: any) {
+  return(
+    <div>{toggler} {sources}</div>
+  )
+}
+
+function Portfolio(props: any) {
   const [toggler, setToggler] = useState(false);
   const { title, subtitle, imageUrl, largeImageUrl, url } = props.content;
 
-  const handleToggler = (value) => {
+  const handleToggler = (value: boolean) => {
     setToggler(value);
   }
 
@@ -19,7 +24,7 @@ function Portfolio(props) {
           src={imageUrl}
           placeholder="/images/portfolio-image-placeholder.png"
         >
-          {src => <img src={src} alt={title} />}
+          {(src: string) => <img src={src} alt={title} />}
         </ProgressiveImage>
         <ul>
           {!largeImageUrl ? null : <li>

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { InformationData } from '../interfaces/apiInformation';
+import { Information } from '../interfaces/apiInformation';
 
 import { faHamburger, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Header(props: InformationData) {
-    const [information, setInformation] = useState(props.information);
+function Header(props: Information) {
+    const [information, setInformation] = useState(props);
     const [navigationToggler, setNavigationToggler] = useState(false);
 
     const handleNavigationToggler = () => {
