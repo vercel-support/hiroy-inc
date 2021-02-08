@@ -7,7 +7,7 @@ import { Information } from '../interfaces/apiInformation';
 import { faHamburger, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Header(props: Information) {
+const Header: React.FC<Information> = (props) => {
     const [information, setInformation] = useState(props);
     const [navigationToggler, setNavigationToggler] = useState(false);
 
