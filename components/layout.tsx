@@ -4,7 +4,7 @@ import Header from "./Header";
 
 import { Information } from '../interfaces/apiInformation';
 
-function Layout(props: Information) {
+const Layout: React.FC<Information> = (props) => {
   return (
     <div className="mi-wrapper">
       <BackgroundLines />
