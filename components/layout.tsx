@@ -1,6 +1,6 @@
 import React from "react";
-import BackgroundLines from "../components/BackgroundLines";
-import Header from "../components/Header";
+import BackgroundLines from "./BackgroundLines";
+import Header from "./Header";
 
 import { Information } from '../interfaces/apiInformation';
 
